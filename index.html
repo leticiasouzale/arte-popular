@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Capítulo 16: Arte Popular</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,700;1,400&family=Alegreya+Sans:wght@400;700&family=Archivo+Black&display=swap" rel="stylesheet">
+<style>
+:root{--creme:#f3ead7;--verde:#173f38;--verde2:#13322d;--ocre:#e7aa32;--telha:#c84b31}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{background:var(--creme);color:var(--verde);font-family:'Alegreya Sans',sans-serif;font-size:20px;line-height:1.5;overflow-x:hidden}
+h1,h2,h3{font-family:'Archivo Black',sans-serif;font-weight:400;line-height:1.05}
+img{display:block;max-width:100%;-webkit-user-drag:none;user-select:none}
+section{position:relative;padding:110px 6vw}
+.wrap{max-width:1240px;margin:auto;position:relative}
+.kick{font-family:'Alegreya',serif;font-style:italic;color:var(--telha)}
+.prog{position:fixed;top:0;left:0;height:6px;width:0;z-index:60;background:repeating-linear-gradient(90deg,var(--telha) 0 24px,var(--ocre) 24px 48px,var(--verde) 48px 72px)}
+.rv{opacity:0;transform:translateY(46px) rotate(var(--r,0deg));transition:opacity .8s,transform .9s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:rotate(var(--r,0deg))}
+
+/* bandeirinhas */
+.band{position:absolute;top:0;left:0;right:0;height:70px;z-index:5;pointer-events:none;overflow:hidden}
+.band svg{width:100%;height:70px;transform-origin:top center;animation:sway 5s ease-in-out infinite}
+@keyframes sway{50%{transform:skewX(2deg) translateX(8px)}}
+.band .fl{transform-box:fill-box;transform-origin:top center;animation:flag 2.4s ease-in-out infinite}
+@keyframes flag{50%{transform:rotate(6deg)}}
+
+/* HERO */
+.hero{min-height:100vh;padding:130px 6vw 60px;display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:center;background:
+ radial-gradient(circle at 85% 20%,rgba(231,170,50,.35),transparent 40%),var(--creme);overflow:hidden}
+.hero h1{font-size:clamp(2.2rem,5.2vw,5rem)}
+.hero h1 .ln{display:block;white-space:nowrap}
+.hero h1 .ln.t{color:var(--telha)}
+.hero h1 .ch{display:inline-block;transition:transform .25s cubic-bezier(.3,2,.4,1),color .2s;cursor:default}
+.hero h1 .ch:hover{transform:translateY(-14px) rotate(-12deg) scale(1.25);color:var(--ocre)}
+.hero .sub{font-size:1.9rem;margin-top:18px}
+.hero .by{margin-top:44px;display:inline-block;font-size:1rem;background:var(--verde);color:var(--creme);padding:10px 22px;border-radius:50px;box-shadow:6px 6px 0 var(--ocre);transform:rotate(-1.5deg)}
+.stage{position:relative;height:78vh;min-height:520px}
+.card{position:absolute;background:var(--creme);padding:10px;border-radius:6px;box-shadow:0 20px 40px -14px rgba(19,50,45,.55);cursor:grab;touch-action:none;will-change:transform}
+.card:active{cursor:grabbing}
+.card img{width:100%;height:100%;object-fit:cover;border-radius:3px}
+.card.c1{top:3%;left:4%;width:56%;aspect-ratio:772/540;--rot:-5deg}
+.card.c2{bottom:2%;right:0;width:74%;aspect-ratio:1154/700;--rot:3deg}
+.card{transform:translate(var(--x,0px),var(--y,0px)) rotate(var(--rot,0deg))}
+.card:hover{z-index:9}
+.sun{position:absolute;width:120px;height:120px;right:8%;top:2%;animation:spin 18s linear infinite;z-index:0}
+@keyframes spin{to{rotate:360deg}}
+.hint{position:absolute;left:50%;bottom:22px;translate:-50% 0;width:34px;height:56px;border:3px solid var(--telha);border-radius:20px}
+.hint::after{content:"";position:absolute;left:50%;top:8px;width:6px;height:10px;margin-left:-3px;border-radius:3px;background:var(--telha);animation:wheel 1.6s infinite}
+@keyframes wheel{70%{transform:translateY(18px);opacity:0}}
+
+/* MARQUEE */
+.mq{background:var(--verde);color:var(--creme);overflow:hidden;white-space:nowrap;padding:16px 0;font-family:'Archivo Black';font-size:1.4rem;transform:rotate(-1.2deg);margin:-20px -10px 0;position:relative;z-index:4;border-block:5px solid var(--ocre)}
+.mq div{display:inline-block;animation:mq 34s linear infinite}
+.mq span{margin:0 26px}.mq i{font-style:normal;color:var(--ocre)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* O QUE É */
+.oq .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+h2.t{font-size:clamp(2rem,4.4vw,3.6rem)}
+.up{text-transform:uppercase}
+.big{font-size:1.55rem;line-height:1.55;margin-top:26px}
+.big em{font-family:'Alegreya',serif;font-weight:700;color:var(--telha);background:linear-gradient(transparent 62%,rgba(231,170,50,.55) 62%);padding:0 4px}
+.sticker{margin-top:36px;background:var(--ocre);padding:26px 30px;border-radius:50% 50% 50% 50%/22% 22% 22% 22%;box-shadow:8px 8px 0 var(--verde);--r:-1.5deg;max-width:560px;transition:transform .4s}
+.sticker:hover{transform:rotate(1.5deg) scale(1.03)}
+.sticker b{display:block;font-size:1.15rem}
+.flower{position:relative;aspect-ratio:1;width:100%;max-width:460px;margin:auto}
+.flower .pt{position:absolute;left:50%;top:50%;width:34%;height:34%;margin:-17%;border-radius:50% 50% 50% 0;background:var(--telha);transform:rotate(calc(var(--i)*45deg)) translateY(-95%);transition:.5s}
+.flower .pt:nth-child(even){background:var(--ocre)}
+.flower .core{position:absolute;inset:34%;border-radius:50%;background:var(--verde);display:grid;place-items:center;overflow:hidden;border:8px solid var(--creme);box-shadow:0 0 0 6px var(--verde)}
+.flower .core img{width:100%;height:100%;object-fit:cover}
+.flower{animation:spin 40s linear infinite}
+.flower .core{animation:spin 40s linear infinite reverse}
+.flower:hover .pt{filter:brightness(1.1)}
+
+/* CARACT */
+.sec-h{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:44px;flex-wrap:wrap}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.tile{position:relative;min-height:290px;padding:30px 24px 24px;background:var(--verde);color:var(--creme);border-radius:22px;overflow:hidden;cursor:pointer;transition:transform .45s cubic-bezier(.3,1.6,.5,1),background .4s,color .4s;--r:0deg}
+.tile:nth-child(2){background:var(--telha)}.tile:nth-child(3){background:var(--ocre);color:var(--verde)}.tile:nth-child(4){background:var(--verde2)}
+.tile .n{font-family:'Archivo Black';font-size:5.5rem;line-height:.8;opacity:.28;position:absolute;right:14px;bottom:-4px;transition:.5s}
+.tile::before{content:"";position:absolute;inset:auto auto -40px -40px;width:130px;height:130px;border-radius:50%;border:14px solid currentColor;opacity:.12;transition:.6s}
+.tile:hover{transform:translateY(-14px) rotate(-2deg) scale(1.03)}
+.tile:nth-child(even):hover{transform:translateY(-14px) rotate(2deg) scale(1.03)}
+.tile:hover .n{opacity:.6;transform:scale(1.2) rotate(-8deg)}
+.tile:hover::before{transform:scale(2.4)}
+.tile p{position:relative;font-size:1.12rem}
+.tile.wide{grid-column:span 2}.tile.wide4{grid-column:span 4;min-height:200px}.tile.wide4 p{font-size:1.5rem;max-width:720px}
+
+/* FIG */
+.fig{background:var(--verde);color:var(--creme);overflow:hidden}
+.fig::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 12% 10%,rgba(231,170,50,.22),transparent 32%),radial-gradient(circle at 92% 90%,rgba(200,75,49,.3),transparent 35%)}
+.fig h2{color:var(--creme)}
+.fig .kick{color:var(--ocre)}
+.figtop{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.fig .pill{background:var(--creme);color:var(--verde);padding:26px 30px;border-radius:30px 4px 30px 4px;box-shadow:-9px 9px 0 var(--ocre)}
+.fig .pill b{display:block;font-size:1.1rem;color:var(--telha)}
+.rail{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;padding:40px 6vw 30px;margin:50px -6vw 0;scrollbar-width:none;cursor:grab}
+.rail::-webkit-scrollbar{display:none}
+.rail.drag{cursor:grabbing;scroll-snap-type:none}
+.rc{flex:0 0 min(380px,78vw);scroll-snap-align:center;background:var(--creme);color:var(--verde);border-radius:26px;padding:34px 30px;min-height:260px;position:relative;transition:transform .4s;user-select:none}
+.rc:nth-child(odd){transform:rotate(-1.6deg)}.rc:nth-child(even){transform:rotate(1.6deg) translateY(16px)}
+.rc:hover{transform:rotate(0) translateY(-10px)}
+.rc .bub{position:absolute;top:-22px;left:24px;width:46px;height:46px;border-radius:50%;background:var(--telha);color:var(--creme);display:grid;place-items:center;font-family:'Archivo Black'}
+.rc p{font-size:1.25rem;margin-top:10px}
+.arr{display:flex;gap:12px}
+.arr button{width:54px;height:54px;border-radius:50%;border:3px solid var(--ocre);background:transparent;color:var(--ocre);cursor:pointer;transition:.3s;display:grid;place-items:center}
+.arr button:hover{background:var(--ocre);color:var(--verde);transform:scale(1.1)}
+.arr svg{width:24px;height:24px}
+
+/* ARTISTAS (stack) */
+.art{padding-bottom:40px}
+.stackwrap{position:relative}
+.sc{position:sticky;top:50px;border-radius:34px;overflow:hidden;display:grid;grid-template-columns:1.05fr .95fr;min-height:70vh;margin-bottom:60px;box-shadow:0 30px 60px -25px rgba(19,50,45,.7);color:var(--creme);background:var(--verde);border-left:16px solid var(--ocre)}
+.sc.two{top:90px;background:var(--verde2);border-left-color:var(--telha);grid-template-columns:.95fr 1.05fr}
+.sc .tx{padding:56px 48px;position:relative}
+.sc h2{font-size:clamp(1.8rem,3.6vw,3rem)}
+.sc .kick{color:var(--ocre);font-weight:700;font-size:1.3rem;margin-top:10px}
+.sc ul{list-style:none;margin-top:22px;display:grid;gap:12px;font-size:1.12rem}
+.sc li{position:relative;padding-left:34px;transition:transform .3s}
+.sc li::before{content:"";position:absolute;left:0;top:.45em;width:16px;height:16px;background:var(--ocre);border-radius:50% 0 50% 0;transition:.5s}
+.sc li:hover{transform:translateX(8px)}.sc li:hover::before{rotate:270deg;background:var(--telha)}
+.sc .ph{position:relative;overflow:hidden;min-height:340px}
+.sc.two .ph{order:-1}
+.sc .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s,filter .6s;filter:saturate(.95)}
+.sc .ph:hover img{transform:scale(1.08) rotate(.8deg)}
+.sc .yr{position:absolute;right:20px;top:14px;font-family:'Archivo Black';font-size:clamp(2rem,5vw,4.2rem);color:var(--ocre);opacity:.22;line-height:1;pointer-events:none}
+
+/* CATIRA */
+.cat .wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.arch{position:relative;border-radius:50% 50% 24px 24px/38% 38% 24px 24px;overflow:hidden;aspect-ratio:1;box-shadow:0 0 0 10px var(--creme),0 0 0 18px var(--telha),22px 30px 0 18px var(--ocre);transition:transform .5s;max-width:540px;margin:auto}
+.arch:hover{transform:rotate(-2deg) scale(1.03)}
+.arch img{width:100%;height:100%;object-fit:cover}
+.cat h2{margin-bottom:6px}
+.cat .kick{color:var(--ocre);font-weight:700;font-size:1.4rem}
+.bubbles{margin-top:28px;display:grid;gap:22px}
+.bb{position:relative;padding:22px 26px;background:#fff8e8;border:3px solid var(--verde);border-radius:26px 26px 26px 4px;transition:.4s;cursor:pointer}
+.bb:nth-child(2){border-radius:26px 26px 4px 26px;margin-left:38px;border-color:var(--telha)}
+.bb:hover{transform:scale(1.04) rotate(-1deg);background:var(--ocre);box-shadow:8px 8px 0 var(--verde)}
+
+/* VIOLA */
+.vio{background:var(--creme);padding-top:40px}
+.vio .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:center}
+.vimg{position:relative;max-width:440px;margin:auto;transform:rotate(-3deg);transition:transform .5s}
+.vimg:hover{transform:rotate(0)}
+.vimg img{border-radius:240px 240px 24px 24px;border:10px solid var(--verde);box-shadow:16px 16px 0 var(--ocre)}
+.strings{margin:34px 0 0;padding:22px 0;position:relative;background:var(--verde);border-radius:18px;display:grid;gap:15px;cursor:pointer;touch-action:none}
+.strings::before,.strings::after{content:"";position:absolute;top:0;bottom:0;width:14px;background:var(--ocre)}
+.strings::before{left:0;border-radius:18px 0 0 18px}.strings::after{right:0;border-radius:0 18px 18px 0}
+.st{height:3px;background:var(--creme);margin:0 22px;border-radius:3px;transform-origin:center}
+.st:nth-child(1),.st:nth-child(2){height:4px;background:var(--ocre)}
+.st.pl{animation:pluck .9s ease-out}
+@keyframes pluck{0%{transform:scaleY(5)}15%{transform:scaleY(-4)}30%{transform:scaleY(3)}45%{transform:scaleY(-2)}60%{transform:scaleY(1.6)}80%{transform:scaleY(-1)}100%{transform:scaleY(1)}}
+.nt{position:absolute;font-size:1.6rem;color:var(--ocre);pointer-events:none;animation:note 1.2s ease-out forwards;z-index:5}
+@keyframes note{to{transform:translate(var(--dx),-90px) rotate(var(--rr));opacity:0}}
+
+/* SONS */
+.sons{background:var(--verde2);color:var(--creme);text-align:center;overflow:hidden;padding-bottom:140px}
+.sons .bgi{position:absolute;inset:-8% 0;background:url(danca.jpg) center/cover;opacity:.22}
+.sons .wrap{max-width:1100px}
+.sons h2{font-size:clamp(2rem,4.6vw,3.8rem)}
+.sons .lead{font-size:1.5rem;max-width:860px;margin:28px auto 0}
+.pads{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:54px}
+.pad{position:relative;aspect-ratio:1/1;border:none;border-radius:34px;background:var(--telha);color:var(--creme);font-family:'Alegreya Sans';font-weight:700;font-size:1.5rem;line-height:1.2;padding:26px;cursor:pointer;overflow:hidden;box-shadow:0 12px 0 #8e301d;transition:transform .12s,box-shadow .12s;display:flex;align-items:center;justify-content:center;text-align:center}
+.pad:nth-child(2){background:var(--ocre);color:var(--verde);box-shadow:0 12px 0 #a77714}
+.pad:nth-child(3){background:var(--creme);color:var(--verde);box-shadow:0 12px 0 #b7a98a}
+.pad:active,.pad.hit{transform:translateY(10px) scale(.97);box-shadow:0 2px 0 rgba(0,0,0,.3)}
+.pad .k{position:absolute;top:14px;left:18px;font-family:'Archivo Black';opacity:.5;font-size:1.2rem}
+.rip{position:absolute;border-radius:50%;border:5px solid currentColor;pointer-events:none;animation:rip .8s ease-out forwards}
+@keyframes rip{from{width:0;height:0;opacity:.8}to{width:240%;height:240%;opacity:0}}
+.pad .eq{position:absolute;bottom:16px;left:50%;translate:-50% 0;display:flex;gap:5px;align-items:end;height:30px}
+.pad .eq i{width:6px;background:currentColor;border-radius:3px;height:6px;opacity:.5}
+.pad.hit .eq i{animation:eq .5s ease-out}
+.pad .eq i:nth-child(2){animation-delay:.05s}.pad .eq i:nth-child(3){animation-delay:.1s}.pad .eq i:nth-child(4){animation-delay:.15s}.pad .eq i:nth-child(5){animation-delay:.2s}
+@keyframes eq{40%{height:30px}}
+.conf{position:fixed;pointer-events:none;z-index:70;width:10px;height:14px;animation:cf 1.6s ease-out forwards}
+@keyframes cf{to{transform:translate(var(--cx),var(--cy)) rotate(var(--cr));opacity:0}}
+
+/* FIM */
+.fim{background:var(--creme);text-align:center;padding-bottom:70px;overflow:hidden;min-height:90vh}
+.fim .polas{position:relative;height:420px;max-width:1100px;margin:0 auto}
+.pol{position:absolute;padding:12px;background:#fff8e8;border-radius:4px;box-shadow:0 20px 40px -16px rgba(19,50,45,.6);cursor:grab;touch-action:none;transform:translate(var(--x,0px),var(--y,0px)) rotate(var(--rot,0deg))}
+.pol:active{cursor:grabbing}
+.pol img{width:100%;height:100%;object-fit:cover}
+.p1{left:2%;top:40px;width:34%;aspect-ratio:473/266;--rot:-6deg}
+.p2{left:32%;top:-10px;width:40%;aspect-ratio:493/316;--rot:3deg;z-index:2}
+.p3{right:2%;top:50px;width:34%;aspect-ratio:960/540;--rot:7deg}
+.fim hr{border:0;height:5px;width:min(880px,85%);margin:40px auto 10px;background:repeating-linear-gradient(90deg,var(--ocre) 0 30px,var(--telha) 30px 60px)}
+.ob{font-family:'Alegreya',serif;font-weight:700;color:var(--telha);font-size:clamp(2.6rem,7vw,6rem);cursor:pointer;line-height:1.1;margin-top:34px}
+.ob span{display:inline-block;transition:transform .3s cubic-bezier(.3,2,.4,1)}
+.ob span:hover{transform:translateY(-16px) rotate(8deg);color:var(--verde)}
+
+@media(max-width:900px){
+ .hero,.oq .grid,.figtop,.cat .wrap,.vio .wrap,.sc,.sc.two{grid-template-columns:1fr}
+ .tiles{grid-template-columns:1fr 1fr}.tile.wide4{grid-column:span 2}.pads{grid-template-columns:1fr}.pad{aspect-ratio:auto;min-height:150px}
+ .stage{height:70vw;min-height:380px}.sc{position:relative;top:0!important}.sc.two .ph{order:0}.fim .polas{height:300px}
+ section{padding:80px 6vw}
+}
+@media(max-width:560px){.tiles{grid-template-columns:1fr}.tile.wide,.tile.wide4{grid-column:auto}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="prog" id="prog"></div>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="band" id="band"></div>
+  <div>
+    <h1 id="h1"><span class="ln">CAPÍTULO 16:</span><span class="ln t">ARTE POPULAR</span></h1>
+    <p class="sub kick">Artistas e inspirações</p>
+    <p class="by">Laura, Ana Beatriz, Arthur, Luiz Otávio, João Pedro</p>
+  </div>
+  <div class="stage" id="stage">
+    <svg class="sun" viewBox="0 0 100 100" aria-hidden="true"><g fill="#e7aa32"><circle cx="50" cy="50" r="22"/><g id="rays"></g></g><circle cx="50" cy="50" r="11" fill="#c84b31"/></svg>
+    <div class="card c1" data-drag><img src="ceramica.jpg" alt=""></div>
+    <div class="card c2" data-drag><img src="colorido.jpg" alt=""></div>
+  </div>
+  <div class="hint"></div>
+</header>
+
+<div class="mq"><div id="mq"></div></div>
+
+<!-- O QUE É -->
+<section class="oq" id="oque">
+  <div class="wrap grid">
+    <div>
+      <h2 class="t up rv">O QUE É<br>ARTE POPULAR?</h2>
+      <p class="big rv" style="--d:.1s">São produções artísticas feitas por pessoas que não são especialistas em arte, não frequentaram escolas ou academias de arte, mas produzem obras com apurado vigor artístico. O termo <em>popular</em> tem origem no latim <em>populus</em> e significa “povo”</p>
+      <div class="sticker rv" style="--d:.2s"><b>Artistas populares:</b> São majoritariamente autodidatas, desenvolvendo sua arte por meio de experiências pessoais e do imaginário de sua comunidade (lendas, crenças e festas)</div>
+    </div>
+    <div class="flower rv" style="--d:.15s" aria-hidden="true">
+      <div class="pt" style="--i:0"></div><div class="pt" style="--i:1"></div><div class="pt" style="--i:2"></div><div class="pt" style="--i:3"></div>
+      <div class="pt" style="--i:4"></div><div class="pt" style="--i:5"></div><div class="pt" style="--i:6"></div><div class="pt" style="--i:7"></div>
+      <div class="core"><img src="bonecas.jpg" alt=""></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-h"><h2 class="t rv">Características principais:</h2></div>
+    <div class="tiles">
+      <div class="tile rv"><span class="n">1</span><p>Forte ligação com o local de origem do artista.</p></div>
+      <div class="tile rv" style="--d:.1s"><span class="n">2</span><p>Consumo feito principalmente pela comunidade onde o artista vive.</p></div>
+      <div class="tile rv wide" style="--d:.2s"><span class="n">3</span><p>Geralmente possui utilidade prática (artesanato e arte utilitária, como potes de cerâmica, jarros, artefatos de madeira, tapetes, rendas, bonecas e carrinhos).</p></div>
+      <div class="tile rv wide4" style="--d:.1s"><span class="n">4</span><p>Função de ornamentar/enfeitar casas e trazer elementos do cotidiano, festas e tradições.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FIGURATIVA -->
+<section class="fig" id="fig">
+  <div class="wrap">
+    <div class="figtop">
+      <div>
+        <h2 class="t rv">O que é Arte Figurativa?</h2>
+        <p class="big rv" style="--d:.1s">Estilo artístico que retrata formas reconhecíveis da realidade, como pessoas, animais, objetos e paisagens, mantendo uma clara semelhança visual com o mundo real.</p>
+      </div>
+      <div class="pill rv" style="--d:.2s"><b>Artistas populares:</b> São majoritariamente autodidatas, desenvolvendo sua arte por meio de experiências pessoais e do imaginário de sua comunidade (lendas, crenças e festas).</div>
+    </div>
+    <div class="sec-h" style="margin:70px 0 0"><h2 class="t rv">Características Principais:</h2>
+      <div class="arr"><button id="pv" aria-label="anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button><button id="nx" aria-label="próximo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button></div>
+    </div>
+  </div>
+  <div class="rail" id="rail">
+    <div class="rc"><span class="bub">1</span><p>Representação clara e identificável de elementos do mundo real (seja de forma realista, estilizada ou expressiva).</p></div>
+    <div class="rc"><span class="bub">2</span><p>Foco na narrativa, na cena cotidiana, no retrato ou na paisagem.</p></div>
+    <div class="rc"><span class="bub">3</span><p>Contrapõe-se à arte abstrata, que não busca representar objetos da realidade exterior.</p></div>
+    <div class="rc"><span class="bub">4</span><p>Pode abranger diversas técnicas e suportes, como pintura, escultura, desenho e gravura.</p></div>
+  </div>
+</section>
+
+<!-- ARTISTAS -->
+<section class="art" id="artistas">
+  <div class="wrap stackwrap">
+    <article class="sc">
+      <div class="tx">
+        <h2>Mestre Vitalino</h2>
+        <p class="kick">Quem foi Mestre Vitalino (1909–1963)?</p>
+        <ul>
+          <li>Ceramista e músico pernambucano nascido em Caruaru.</li>
+          <li>Começou modelando pequenos animais com sobras de barro da mãe e, depois, passou a criar grupos humanos retratando o cotidiano do Nordeste (como a obra Trabalhadores no eito).</li>
+          <li>Tornou a cidade de Caruaru um grande polo de comércio ceramista.</li>
+          <li>Em 1947, realizou uma exposição no Rio de Janeiro que marcou a introdução da arte popular para o grande público.</li>
+          <li>Curiosidade: Sua importância é tão grande que virou até tema de biografia em quadrinhos (Vitalino, o menino que virou mestre)</li>
+        </ul>
+      </div>
+      <div class="ph"><img src="vitalino.jpg" alt="Mestre Vitalino"><span class="yr">1909–1963</span></div>
+    </article>
+    <article class="sc two">
+      <div class="ph"><img src="patativa.jpg" alt="Patativa do Assaré"><span class="yr">1909–2002</span></div>
+      <div class="tx">
+        <h2>Patativa do Assaré</h2>
+        <p class="kick">Quem foi Patativa do Assaré (1909–2002)?</p>
+        <ul>
+          <li>Conhecido como "o porta-voz do Sertão", Antônio Gonçalves da Silva nasceu em Assaré, no Ceará.</li>
+          <li>Poeta e violeiro, escrevia sobre o cotidiano e a vida do povo sertanejo usando uma linguagem popular, rompendo com o cânone literário tradicional.</li>
+          <li>Teve forte ligação com a literatura de cordel e a oralidade (suas poesias ganham muita força quando recitadas, influenciando os cantores de viola).</li>
+          <li>Publicou livros marcantes como Inspiração nordestina (1956), Cante lá que eu canto cá (1978) e Ispinho e fulô (1988)</li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- CATIRA -->
+<section class="cat" id="catira">
+  <div class="wrap">
+    <div class="arch rv"><img src="catira.jpg" alt="Grupo Catira Brasil"></div>
+    <div>
+      <h2 class="t rv">A Catira</h2>
+      <p class="kick rv" style="--d:.1s">O que é a Catira?</p>
+      <div class="bubbles">
+        <div class="bb rv" style="--d:.1s">Manifestação popular tradicional do interior do Brasil (especialmente nas regiões Sudeste e Centro-Oeste) ligada à cultura sertaneja.</div>
+        <div class="bb rv" style="--d:.2s">Mistura traços das culturas africana, indígena e europeia, estando presente desde o Período Colonial.</div>
+        <div class="bb rv" style="--d:.3s">Antigamente associada ao descanso dos tropeiros, hoje é marcada por batidas de pés e mãos (com botas que amplificam o som no chão) e acompanhada pelo som da viola caipira.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIOLA -->
+<section class="vio" id="viola">
+  <div class="wrap">
+    <div class="vimg rv"><img src="viola.jpg" alt="Viola caipira"></div>
+    <div>
+      <h2 class="t rv">A Viola Caipira</h2>
+      <div class="bubbles">
+        <div class="bb rv" style="--d:.1s">Instrumento de cordas típico das regiões interioranas, com origens nas violas de Portugal e influência de artefatos musicais árabes.</div>
+        <div class="bb rv" style="--d:.2s">Músicos importantes citados na apostila: Almir Sater, Renato Andrade, Tião Carreiro, além de grandes expoentes como Paulo Freire (que aprendeu com o mestre Manelim no Sertão de Minas Gerais) e Helena Meirelles (famosa instrumentista que ganhou destaque na mídia aos 67 anos)</div>
+      </div>
+      <div class="strings" id="strings"><div class="st"></div><div class="st"></div><div class="st"></div><div class="st"></div><div class="st"></div><div class="st"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SONS -->
+<section class="sons" id="sons">
+  <div class="bgi" data-par></div>
+  <div class="wrap">
+    <h2 class="rv">Sons e Ritmos com o Corpo</h2>
+    <p class="lead rv" style="--d:.1s">Exploração Sonora: Assim como na catira e em grupos modernos (como o Barbatuques, que utiliza o corpo como instrumento musical), a arte popular também se expressa por meio de:</p>
+    <div class="pads">
+      <button class="pad rv" data-s="clap"><span class="k">1</span>Palmas.<span class="eq"><i></i><i></i><i></i><i></i><i></i></span></button>
+      <button class="pad rv" style="--d:.1s" data-s="stomp"><span class="k">2</span>Batidas dos pés no chão.<span class="eq"><i></i><i></i><i></i><i></i><i></i></span></button>
+      <button class="pad rv" style="--d:.2s" data-s="body"><span class="k">3</span>Sons e ritmos gerados pelo próprio corpo para criar interações artísticas e musicais.<span class="eq"><i></i><i></i><i></i><i></i><i></i></span></button>
+    </div>
+  </div>
+</section>
+
+<!-- FIM -->
+<section class="fim" id="fim">
+  <div class="polas">
+    <div class="pol p1" data-drag><img src="bonecas.jpg" alt=""></div>
+    <div class="pol p2" data-drag><img src="tapecaria.jpg" alt=""></div>
+    <div class="pol p3" data-drag><img src="croche.jpg" alt=""></div>
+  </div>
+  <hr>
+  <div class="ob" id="ob">Obrigado pela atenção!</div>
+</section>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const COL=['#c84b31','#e7aa32','#173f38','#f3ead7'];
+/* bandeirinhas */
+(function(){let h='<svg viewBox="0 0 1440 70" preserveAspectRatio="none"><path d="M0 6 Q720 56 1440 6" fill="none" stroke="#173f38" stroke-width="3"/>';
+ for(let i=0;i<24;i++){const t=(i+.5)/24,x=t*1440,y=6+4*t*(1-t)*50*.5*2/1,c=COL[i%3];
+  h+=`<g class="fl" style="animation-delay:${i*-.17}s"><path d="M${x-26} ${y} L${x+26} ${y} L${x} ${y+46}Z" fill="${c}"/></g>`}
+ $('#band').innerHTML=h+'</svg>'})();
+/* sol */
+$('#rays').innerHTML=Array.from({length:12},(_,i)=>`<path d="M50 6 L54 22 L46 22Z" transform="rotate(${i*30} 50 50)"/>`).join('');
+/* h1 letras */
+$$('#h1 .ln').forEach(l=>{l.innerHTML=[...l.textContent].map(c=>c===' '?' ':`<span class="ch">${c}</span>`).join('')});
+const ob=$('#ob');ob.innerHTML=[...ob.textContent].map(c=>c===' '?' ':`<span>${c}</span>`).join('');
+/* faixa */
+const W=['ARTE POPULAR','Palmas.','Batidas dos pés no chão.','Catira','Viola Caipira','Mestre Vitalino','Patativa do Assaré'];
+const r=W.map(w=>`<span>${w}</span><span><i>✦</i></span>`).join('');$('#mq').innerHTML=r.repeat(4);
+/* reveal */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+$$('.rv').forEach(e=>io.observe(e));
+/* progresso+parallax */
+function sc(){const h=document.documentElement;$('#prog').style.width=scrollY/(h.scrollHeight-innerHeight)*100+'%';
+ $$('[data-par]').forEach(p=>{const r=p.parentElement.getBoundingClientRect();p.style.transform=`translateY(${r.top*-.12}px)`})}
+addEventListener('scroll',sc,{passive:true});sc();
+/* arrastar cartões */
+$$('[data-drag]').forEach(el=>{let sx,sy,ox=0,oy=0,on=false;
+ el.addEventListener('pointerdown',e=>{on=true;sx=e.clientX;sy=e.clientY;el.setPointerCapture(e.pointerId);el.style.zIndex=20;
+  $$('[data-drag]').forEach(o=>{if(o!==el)o.style.zIndex=1})});
+ el.addEventListener('pointermove',e=>{if(!on)return;el.style.setProperty('--x',ox+e.clientX-sx+'px');el.style.setProperty('--y',oy+e.clientY-sy+'px');
+  el.style.setProperty('--rot',(parseFloat(el.dataset.rot||getComputedStyle(el).getPropertyValue('--rot'))+(e.movementX*.15))+'deg')});
+ el.addEventListener('pointerup',e=>{on=false;ox+=e.clientX-sx;oy+=e.clientY-sy});
+ el.dataset.rot=parseFloat(getComputedStyle(el).getPropertyValue('--rot'))||0;
+ el.addEventListener('pointermove',()=>{el.dataset.rot=parseFloat(el.style.getPropertyValue('--rot'))||el.dataset.rot});
+});
+/* trilho */
+const rail=$('#rail');let down=false,sx=0,sl=0;
+rail.addEventListener('pointerdown',e=>{down=true;sx=e.clientX;sl=rail.scrollLeft;rail.classList.add('drag')});
+addEventListener('pointerup',()=>{down=false;rail.classList.remove('drag')});
+rail.addEventListener('pointermove',e=>{if(down)rail.scrollLeft=sl-(e.clientX-sx)});
+$('#nx').onclick=()=>rail.scrollBy({left:400,behavior:'smooth'});$('#pv').onclick=()=>rail.scrollBy({left:-400,behavior:'smooth'});
+/* áudio */
+let ac;const A=()=>ac||(ac=new (window.AudioContext||window.webkitAudioContext)());
+function noise(d){const c=A(),b=c.createBuffer(1,c.sampleRate*d,c.sampleRate),a=b.getChannelData(0);for(let i=0;i<a.length;i++)a[i]=Math.random()*2-1;const s=c.createBufferSource();s.buffer=b;return s}
+function clap(t=0){const c=A(),n=c.currentTime+t;[0,.018,.04].forEach(o=>{const s=noise(.15),f=c.createBiquadFilter(),g=c.createGain();f.type='bandpass';f.frequency.value=1500;f.Q.value=.9;s.connect(f);f.connect(g);g.connect(c.destination);g.gain.setValueAtTime(.9,n+o);g.gain.exponentialRampToValueAtTime(.001,n+o+.11);s.start(n+o)})}
+function stomp(t=0){const c=A(),n=c.currentTime+t,o=c.createOscillator(),g=c.createGain();o.frequency.setValueAtTime(150,n);o.frequency.exponentialRampToValueAtTime(40,n+.2);g.gain.setValueAtTime(1.2,n);g.gain.exponentialRampToValueAtTime(.001,n+.3);o.connect(g);g.connect(c.destination);o.start(n);o.stop(n+.32);
+ const s=noise(.06),f=c.createBiquadFilter(),h=c.createGain();f.type='lowpass';f.frequency.value=700;s.connect(f);f.connect(h);h.connect(c.destination);h.gain.setValueAtTime(.6,n);h.gain.exponentialRampToValueAtTime(.001,n+.06);s.start(n)}
+function body(t=0){const c=A(),n=c.currentTime+t;[[520,0],[780,.09],[390,.18]].forEach(([fr,o])=>{const x=c.createOscillator(),g=c.createGain();x.type='triangle';x.frequency.setValueAtTime(fr,n+o);x.frequency.exponentialRampToValueAtTime(fr*.6,n+o+.09);g.gain.setValueAtTime(.6,n+o);g.gain.exponentialRampToValueAtTime(.001,n+o+.1);x.connect(g);g.connect(c.destination);x.start(n+o);x.stop(n+o+.12)})}
+const SND={clap,stomp,body};
+function confetti(x,y){for(let i=0;i<26;i++){const d=document.createElement('i');d.className='conf';d.style.left=x+'px';d.style.top=y+'px';d.style.background=COL[i%4];
+ d.style.setProperty('--cx',(Math.random()-.5)*420+'px');d.style.setProperty('--cy',(Math.random()*-280-30)+'px');d.style.setProperty('--cr',Math.random()*720+'deg');document.body.appendChild(d);setTimeout(()=>d.remove(),1700)}}
+function hit(p,x,y){SND[p.dataset.s]();p.classList.add('hit');setTimeout(()=>p.classList.remove('hit'),140);
+ const b=p.getBoundingClientRect(),rp=document.createElement('span');rp.className='rip';rp.style.left=(x??b.left+b.width/2)-b.left+'px';rp.style.top=(y??b.top+b.height/2)-b.top+'px';rp.style.translate='-50% -50%';p.appendChild(rp);setTimeout(()=>rp.remove(),800)}
+$$('.pad').forEach(p=>{p.addEventListener('pointerdown',e=>{hit(p,e.clientX,e.clientY);const b=p.getBoundingClientRect();confetti(e.clientX,e.clientY)})});
+addEventListener('keydown',e=>{const p=$$('.pad')[{'1':0,'2':1,'3':2}[e.key]];if(p&&!e.repeat)hit(p)});
+/* cordas */
+const F=[146.83,196,246.94,293.66,392,493.88];
+function pluck(i,x,y){const el=$$('.st')[i];el.classList.remove('pl');void el.offsetWidth;el.classList.add('pl');
+ const c=A(),n=c.currentTime,o=c.createOscillator(),o2=c.createOscillator(),g=c.createGain(),f=c.createBiquadFilter();
+ o.type='sawtooth';o2.type='triangle';o.frequency.value=F[5-i];o2.frequency.value=F[5-i]*2;f.type='lowpass';f.frequency.setValueAtTime(3000,n);f.frequency.exponentialRampToValueAtTime(500,n+1);
+ g.gain.setValueAtTime(.28,n);g.gain.exponentialRampToValueAtTime(.001,n+1.6);o.connect(f);o2.connect(f);f.connect(g);g.connect(c.destination);o.start(n);o2.start(n);o.stop(n+1.7);o2.stop(n+1.7);
+ const s=document.createElement('span');s.className='nt';s.textContent=['♪','♫'][i%2];s.style.left=x+'px';s.style.top=y+'px';s.style.setProperty('--dx',(Math.random()-.5)*80+'px');s.style.setProperty('--rr',(Math.random()-.5)*60+'deg');$('#strings').appendChild(s);setTimeout(()=>s.remove(),1300)}
+const S=$('#strings');let last=-1,pd=false;
+function over(e){const r=S.getBoundingClientRect(),sts=$$('.st');let best=-1,bd=1e9;sts.forEach((s,i)=>{const b=s.getBoundingClientRect(),d=Math.abs(e.clientY-(b.top+b.height/2));if(d<bd){bd=d;best=i}});
+ if(bd<9&&best!==last){last=best;pluck(best,e.clientX-r.left,e.clientY-r.top)}else if(bd>=9)last=-1}
+S.addEventListener('pointermove',over);S.addEventListener('pointerdown',e=>{last=-1;over(e)});S.addEventListener('pointerleave',()=>last=-1);
+/* obrigado: confete */
+$('#ob').addEventListener('click',e=>{confetti(e.clientX,e.clientY);confetti(e.clientX-80,e.clientY);confetti(e.clientX+80,e.clientY);clap()});
+</script>
+</body>
+</html>
